@@ -1,6 +1,59 @@
-## Requirements
+# Terraform AWS EC2 Instance with S3 Sync
 
-No requirements.
+This Terraform configuration creates an AWS EC2 instance with the following features:
+
+- Custom VPC with public and private subnets
+- Ubuntu 20.04 LTS base image
+- SSH key pair for access
+- IAM role with S3 full access policy
+- Security group allowing SSH access
+- Periodically syncs user home directories to an S3 bucket
+- Creates and deletes users with unique SSH keys
+
+## Prerequisites
+
+- Terraform 1.0.0 or newer
+- AWS account and credentials
+
+## Usage
+
+1. Clone this repository:
+
+    `git clone https://github.com/your-repo-url/terraform-aws-ec2-s3-sync.git
+
+    cd terraform-aws-ec2-s3-sync``
+
+
+2. Initialize Terraform:
+
+    `terraform init`
+
+3. Create a `terraform.tfvars` file with the following content:
+
+`create_usernames = ["user1", "user2"]
+delete_usernames = ["user3", "user4"]
+`
+Note: there is a variables.tf file already.
+
+4. Check the output for the private SSH keys of the created users:
+
+
+
+    terraform output user_private_keys
+
+
+## Components
+
+- **VPC**: Custom VPC with public and private subnets across two availability zones.
+- **EC2 Instance**: Ubuntu 20.04 LTS instance with SSH key pair, IAM role for S3 access, and security group allowing SSH.
+- **S3 Bucket**: Bucket for syncing user home directories.
+- **IAM Role**: Role with full access to Amazon S3, attached to the EC2 instance.
+- **User Management**: Creates and deletes specified users and their unique SSH keys.
+- **S3 Sync**: Periodically syncs user home directories to the S3 bucket.
+
+## Notes
+
+This configuration is for demonstration purposes only and is not recommended for production use. Please review and adjust the security settings to meet your specific requirements.
 
 ## Providers
 
