@@ -1,0 +1,13 @@
+for user creatiion and deletion:
+
+Solution 1: 
+
+First went with AWS Transfer family  but since frugality was the priority and aws transfer family is expensive dropped this.
+
+Solution 2:
+
+Created codecommit repo, codebuild with the same vpc that ec2 is using. created a ansible script for sftp user management and ran it with codebuild.
+
+Solution3.
+
+Tried to do everything using terraform as it seems to be cost-efficient.
